@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgba(0, 0, 0, 0.74);
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            border: 1px solid;
+        }
+        .target{
+            background-color: rgb(255, 72, 0);
+        }
+        .button_class{
+           position: fixed;
+           top: 10px;
+           right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <aside class="button_class">
+        <button class="scroll_by">scrollY 100px</button>
+        <button class="scroll_to">scroll to 100px</button>
+        <button class="scroll_into">scroll to target</button>
+    </aside>
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="target"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    
+    <script>
+        const target = document.querySelector(".target");
+
+        target.addEventListener("click",(event)=>{
+            console.clear();
+            const rec = target.getBoundingClientRect();
+            console.log(rec);
+            console.log("client X : ", event.clientX);
+            console.log("client Y : ", event.clientY);
+            console.log("page X : ", event.pageX);
+            console.log("page Y : ", event.pageY);
+        });
+
+        // 스크롤 api
+        const scroll_by = document.querySelector(".scroll_by");
+        const scroll_to = document.querySelector(".scroll_to");
+        const scroll_into = document.querySelector(".scroll_into");
+
+        scroll_by.addEventListener("click", ()=>{
+            window.scrollBy({top:100,behavior:'smooth'});
+        });
+        scroll_to.addEventListener("click", ()=>{
+            window.scrollTo({top:100,behavior:'smooth'});
+        });
+        scroll_into.addEventListener("click", ()=>{
+            target.scrollIntoView({behavior:'smooth', block:'center'});
+        });
+    </script>
+</body>
+</html>
